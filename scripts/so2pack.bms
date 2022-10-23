@@ -1,0 +1,19 @@
+get files long
+get Headersize long
+get dataoff long
+get datastart long
+
+for i = 0 < files
+
+get OFFSET long
+savepos tmp
+
+goto dataoff
+get SIZE long
+savepos dataoff
+
+goto tmp
+
+log "" OFFSET SIZE
+
+next i

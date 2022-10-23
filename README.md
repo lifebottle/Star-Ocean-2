@@ -1,7 +1,7 @@
 # Star-Ocean-2
 An attempt to create an English patch for Star Ocean Second Evolution (Vita).
 
-# Extracting Files
+# Extracting PSVita Files
 1. Download the following tools (as needed):
    - [pkg2zip](https://github.com/mmozeiko/pkg2zip/releases)
    - [_decrypt.exe and psvpfsparser-win64.exe](https://gbatemp.net/threads/release-decrypt-and-launch-psn-store-vita-games-without-plugins.548878/)
@@ -75,5 +75,21 @@ An attempt to create an English patch for Star Ocean Second Evolution (Vita).
 
 1. A hex editor like `wxMEdit` can be used to look at the contents.
 
+
+# Extracting PSP Files
+1. Get `PSP_GAME\USRDIR\so2pack.bin`
+1. Use QuickBMS with [`so2pack.bms`](scripts/so2pack.bms) to extract game files.  Sample command: `quickbms.exe -d so2pack.bms so2pack.bin`
+  ![screenshot3](img/so2_quickbms02.png)
+1. After extraction, there should be ~25,830 files with extensions like `DAT`, `IMG`, `GIM`, `NFC`, `SDB`, `SLZ`, `TXT`, `VAP`, and `XEJ`.  See contents here: [so2pack.bin.txt](so2pack.bin.txt)
+1. Use QuickBMS again to further extract `SLZ` files.  Sample command: `quickbms.exe -F "{}.slz" slz.bms so2pack.bin_extract slz`
+  ![screenshot3](img/so2_quickbms03.png)
+1. There are more `SLZ` files in here, so run the command again to extract the files further.  Files include `CGM`, and `FOG` extensions.
+
+# Hacker Notes
+This section is for notes found around the web that may help with this project.
+
 ## Hacker Note 1
-> Note for anyone trying to patch ENG text. Entire game is one `psarc` file. It's easily extracted and reencrypted. Structure appears same as PSP ver, so, ~~I think it is possibly easy to patch official PSP ENG translation~~.
+> Note for anyone trying to patch ENG text.  Entire game is one `psarc` file. ~~It's easily extracted and reencrypted.~~ ~~Structure appears same as PSP ver~~, so, ~~I think it is possibly easy to patch official PSP ENG translation~~.
+
+# Resources
+  - [QuickBMS script to unpack `so2pack.bin` (PSP)](https://m.blog.naver.com/physics1114/220350384937)
