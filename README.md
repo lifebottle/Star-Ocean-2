@@ -1,7 +1,7 @@
 # Star-Ocean-2
 An attempt to create an English patch for Star Ocean Second Evolution (Vita).
 
-# Extracting PSVita Files
+# Unpacking PSVita Files
 1. Download the following tools (as needed):
    - [pkg2zip](https://github.com/mmozeiko/pkg2zip/releases)
    - [_decrypt.exe and psvpfsparser-win64.exe](https://gbatemp.net/threads/release-decrypt-and-launch-psn-store-vita-games-without-plugins.548878/)
@@ -75,8 +75,16 @@ An attempt to create an English patch for Star Ocean Second Evolution (Vita).
 
 1. A hex editor like `wxMEdit` can be used to look at the contents.
 
+# Repacking PSVita Files
+1. Use Total Command and the PSARC plugin to pack the files back into a single `PSARC` file
+1. Select the `GMX` folder with with the modded files on the right side of Total Commander (right-click to highlight red) 
+1. Click on the "Pack file" button on the tool bar.  Uncheck "Also pack pathnames" so the `GMX` folder doesn't appear again.
+  ![screenshot4](img/so2psv_repack.png)
+1. Click OK to save the file as `GMX.PSARC`, you can rename it to `so2psv.psarc` later.
+1. Notice the newly packed file is a different size from the original, even if you don't make any modifications.
 
-# Extracting PSP Files
+
+# Unpacking PSP Files
 1. Get `PSP_GAME\USRDIR\so2pack.bin`
 1. Use QuickBMS with [`so2pack.bms`](scripts/so2pack.bms) to extract game files.  Sample command: `quickbms.exe -d so2pack.bms so2pack.bin`
   ![screenshot3](img/so2_quickbms02.png)
@@ -84,6 +92,11 @@ An attempt to create an English patch for Star Ocean Second Evolution (Vita).
 1. Use QuickBMS again to further extract `SLZ` files.  Sample command: `quickbms.exe -F "{}.slz" slz.bms so2pack.bin_extract slz`
   ![screenshot3](img/so2_quickbms03.png)
 1. There are more `SLZ` files in here, so run the command again to extract the files further.  Files include `CGM`, and `FOG` extensions.
+
+# Packing PSP Files
+1. Make a copy of `so2pack.bin` just in case.
+1. Use QuickBMS to repack files into the existing `so2pack.bin`.  Sample command: `quickbms.exe -r -w so2pack.bms so2pack.bin so2pack.bin_extract`
+1. To repack files, the modified files need to be less than or equal to the original file.
 
 # Hacker Notes
 This section is for notes found around the web that may help with this project.
